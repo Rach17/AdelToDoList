@@ -19,6 +19,7 @@ const ModifyModel = ({ onSave, task }: ModifyModalProps) => {
 
   const handleSave = (e: React.FormEvent) => {
     e.preventDefault();
+    setModifiedTask({...modifiedTask, title: modifiedTask.title.trim(), description: modifiedTask.description.trim()});
     onSave(modifiedTask);
   };
 
@@ -67,7 +68,7 @@ const ModifyModel = ({ onSave, task }: ModifyModalProps) => {
             required
             value={modifiedTask.title}
             onChange={(e) =>
-              setModifiedTask({ ...modifiedTask, title: e.target.value.trim() })
+              setModifiedTask({ ...modifiedTask, title: e.target.value })
             }
           />
         </div>
@@ -83,7 +84,7 @@ const ModifyModel = ({ onSave, task }: ModifyModalProps) => {
             className="mt-1 block grow	 px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
             value={modifiedTask.description}
             onChange={(e) =>
-              setModifiedTask({ ...modifiedTask, description: e.target.value.trim() })
+              setModifiedTask({ ...modifiedTask, description: e.target.value })
             }
           />
         </div>

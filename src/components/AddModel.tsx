@@ -27,6 +27,7 @@ const AddModal: React.FC<AddModalProps> = ({
 
   const handleSave = (e: React.FormEvent) => {
     e.preventDefault();
+    setNewTask({...newTask, title: newTask.title.trim(), description: newTask.description.trim()});
     onSave(newTask);
     setNewTask({
       id: Date.now(),
@@ -63,7 +64,7 @@ const AddModal: React.FC<AddModalProps> = ({
               required
               value={newTask.title}
               onChange={(e) =>
-                setNewTask({ ...newTask, title: e.target.value.trim() })
+                setNewTask({ ...newTask, title: e.target.value })
               }
             />
           </div>
@@ -81,7 +82,7 @@ const AddModal: React.FC<AddModalProps> = ({
               className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
               value={newTask.description}
               onChange={(e) =>
-                setNewTask({ ...newTask, description: e.target.value.trim() })
+                setNewTask({ ...newTask, description: e.target.value })
               }
             />
           </div>
@@ -99,6 +100,7 @@ const AddModal: React.FC<AddModalProps> = ({
               name="date"
               required
               value={newTask.dateToDo.toISOString().split("T")[0]}
+              onChange={(e) => setNewTask({ ...newTask, dateToDo: new Date(e.target.value) })}
               className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
             />
           </div>
